@@ -66,7 +66,8 @@ const getFriends = async(req = request, res = response)=>{
     const getfriends = await Friendship.find({
         $or: [{receiver: id}, {sender: id}],
         $and: [{accepted: true}]
-    }).populate('sender', 'name lastname').populate('receiver', 'name lastname');
+    }).populate('sender', 'name lastname address university email telnumber')
+    .populate('receiver', 'name lastname address university email telnumber');
 
     res.json({
         getfriends
